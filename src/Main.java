@@ -5,9 +5,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		Scanner input = new Scanner(System.in);
-		//System.out.println("Input DNested Segments!");
-		while (true)
-			runDNested(input);
+		runDNested(input);
 	}
 
 	private static void runDNested(Scanner input)
@@ -17,8 +15,6 @@ public class Main
 
 		for (int i = 0; i < size; i++)
 			list.addPair(input.nextInt(), input.nextInt());
-
-		//System.out.println(list.print());
 
 		list.solve();
 		list.printOutput();
@@ -70,12 +66,6 @@ class Segment
 	{
 		return this.l < seg.l && this.r > seg.r;
 	}
-
-	@Override
-	public String toString()
-	{
-		return "{l=" + l + ", r=" + r + "}";
-	}
 }
 
 class SegmentList
@@ -86,11 +76,6 @@ class SegmentList
 	public SegmentList(int size)
 	{
 		this.size = size;
-	}
-
-	public void add(Segment segment)
-	{
-		list.add(segment);
 	}
 
 	public void addPair(int l, int r)
@@ -118,54 +103,16 @@ class SegmentList
 		return list.get(index).getR();
 	}
 
-	public String print()
-	{
-		return print(size);
-	}
-
-	public String print(int stop)
-	{
-		String buf = "List of " + 
-			stop + " segments:\n";
-
-		for (int i = 0; i < stop; i++)
-		{
-			buf += "#" + i + ": "
-				+ list.get(i).toString() + "\n";
-		}
-
-		return  buf;
-	}
-
 	public void solve()
 	{
-		boolean isFit;
-		int fitCount = 0;
-
 		for (int j = 0; j < size; j++)
 			for (int i = 0; i < size; i++)
 			{
 				if (j == i)
 					continue;
 
-				isFit = list.get(j).contains(
-					list.get((i)));
-
-				if (isFit)
-				{
-					fitCount++;
+				if (list.get(j).contains(list.get(i)))
 					list.get(j).incN();
-//					System.out.printf("#%d: " +
-//									  "(%d, %d) contains (%d, %d)" +
-//									  " - %d segments\n",
-//									  fitCount, 
-//									  list.get(j).getL(),
-//									  list.get(j).getR(),
-//									  list.get(i).getL(),
-//									  list.get(i).getR(),
-//									  list.get(j).getN()
-//									  );
-				}
 			}
 	}
 
