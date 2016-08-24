@@ -112,7 +112,18 @@ class SegmentList
 					continue;
 
 				if (list.get(j).contains(list.get(i)))
+				{
 					list.get(j).incN();
+
+					System.out.printf("(%d, %d) contains (%d, %d)" +
+									  " - %d count\n",
+									  list.get(j).getL(),
+									  list.get(j).getR(),
+									  list.get(i).getL(),
+									  list.get(i).getR(),
+									  list.get(j).getN()
+									  );
+				}
 			}
 	}
 
