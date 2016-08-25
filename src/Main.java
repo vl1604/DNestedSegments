@@ -111,18 +111,21 @@ class SegmentList
 				if (j == i)
 					continue;
 
-				if (list.get(j).contains(list.get(i)))
+				if (list.get(j)
+					.contains(list.get(i)))
 				{
 					list.get(j).incN();
 
-					System.out.printf("(%d, %d) contains (%d, %d)" +
-									  " - %d count\n",
-									  list.get(j).getL(),
-									  list.get(j).getR(),
-									  list.get(i).getL(),
-									  list.get(i).getR(),
-									  list.get(j).getN()
-									  );
+					System.out.printf(
+						"(%d, %d) contains " +
+						"(%d, %d)" +
+						" - %d times\n",
+						list.get(j).getL(),
+						list.get(j).getR(),
+						list.get(i).getL(),
+						list.get(i).getR(),
+						list.get(j).getN()
+					);
 				}
 			}
 	}
@@ -130,6 +133,7 @@ class SegmentList
 	public void printOutput()
 	{
 		for (int j = 0; j < size; j++)
-			System.out.println(list.get(j).getN());
+			System.out.println(
+				list.get(j).getN());
 	}
 }
