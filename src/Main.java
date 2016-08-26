@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Main
 {
+	private static ArrayList<Integer> array; 
+
 	public static void main(String[] args)
 	{
 		Scanner input = new Scanner(System.in);
@@ -11,13 +13,60 @@ public class Main
 	private static void runDNested(Scanner input)
 	{
 		int size = input.nextInt();
-		SegmentList list = new SegmentList(size);
+//		SegmentList list = new SegmentList(size);
+
+//		for (int i = 0; i < size; i++)
+//			list.addPair(input.nextInt(), input.nextInt());
+
+		array = new ArrayList<Integer>(3 * size);
 
 		for (int i = 0; i < size; i++)
-			list.addPair(input.nextInt(), input.nextInt());
+		{
+			array.add(input.nextInt());
+			array.add(input.nextInt());
+			array.add(0);
+		}
 
-		list.solve();
-		list.printOutput();
+		solveArray(array);
+		printArray(array);
+
+//		list.solve();
+//		list.printOutput();
+	}
+
+	private static void solveArray(ArrayList<Integer> a)
+	{
+		int size = a.size();
+
+		for (int j = 0; j < size; j += 3)
+			for (int i = 0; i < size; i += 3)
+			{
+				if (j == i)
+					continue;
+
+				if (a.get(j) < a.get(i) && 
+					a.get(j + 1) > a.get(i + 1))
+					a.set(j + 2, a.get(j + 2) + 1);
+
+				System.out.printf(
+					"(%d, %d) contains " +
+					"(%d, %d)" +
+					" - %d times\n",
+					a.get(j), a.get(j + 1),
+					a.get(i), a.get(i + 1),
+					a.get(j + 2)
+				);
+			}
+	}
+
+	private static void printArray(ArrayList<Integer> a)
+	{
+		StringBuilder s = new StringBuilder();
+
+		for (int j = 0; j < a.size(); j += 3)
+			s.append(a.get(j + 2)).append('\n');
+
+		System.out.print(s);
 	}
 }
 
