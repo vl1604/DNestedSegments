@@ -30,20 +30,26 @@ public class Main
 	private static void solveArray(ArrayList<Integer> a)
 	{
 		int size = a.size();
-		int jl, jr;
+		int jl, jr, il, ir;
 
 		for (int j = 0; j < size; j += 3)
 		{
 			jl = a.get(j);
 			jr = a.get(j + 1);
-			for (int i = 0; i < size; i += 3)
-			{
-				if (j == i)
-					continue;
 
-				if (jl < a.get(i)
-					&& jr > a.get(i + 1))
-					a.set(j + 2, a.get(j + 2) + 1);
+			for (int i = j + 3; i < size; i += 3)
+			{
+				il = a.get(i);
+				ir = a.get(i + 1);
+
+				if (jl < il)
+				{
+					if (jr > ir)
+						a.set(j + 2, a.get(j + 2) + 1);
+				}
+				else
+				if (ir > jr)
+					a.set(i + 2, a.get(i + 2) + 1);
 			}
 		}
 	}
