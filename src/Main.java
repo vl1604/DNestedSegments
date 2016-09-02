@@ -1,5 +1,4 @@
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Main
 {
@@ -31,6 +30,28 @@ public class Main
 	{
 		int size = a.size();
 		int jl, jr, il, ir;
+		int lmin = a.get(0), rmax = a.get(1);
+
+
+		ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
+		for (int j = 0; j < size; j += 3)
+		{
+			ArrayList<Integer> item = new ArrayList<Integer>();
+			item.add(a.get(j));
+			item.add(a.get(j + 1));
+			item.add(a.get(j + 2));
+
+			list.add(item);
+		}
+		Collections.sort(list, 
+			new Comparator<ArrayList>(){
+				public int compare(ArrayList<Integer> obj1, 
+								   ArrayList<Integer> obj2)
+				{
+					return  obj1.get(0) - obj2.get(0);
+				}
+			});
+
 
 		for (int j = 0; j < size; j += 3)
 		{
@@ -41,6 +62,14 @@ public class Main
 			{
 				il = a.get(i);
 				ir = a.get(i + 1);
+
+				if (j == 0)
+				{
+					if (il < lmin)
+						lmin = il;
+					if (ir > rmax)
+						rmax = ir;
+				}
 
 				if (jl < il)
 				{
@@ -63,4 +92,51 @@ public class Main
 
 		System.out.print(s);
 	}
+
+	private class Segment
+	{
+		int l,r,num,pos;
+
+
+		public void setL(int l)
+		{
+			this.l = l;
+		}
+
+		public int getL()
+		{
+			return l;
+		}
+
+		public void setR(int r)
+		{
+			this.r = r;
+		}
+
+		public int getR()
+		{
+			return r;
+		}
+
+		public void setNum(int num)
+		{
+			this.num = num;
+		}
+
+		public int getNum()
+		{
+			return num;
+		}
+
+		public void setPos(int pos)
+		{
+			this.pos = pos;
+		}
+
+		public int getPos()
+		{
+			return pos;
+		}}
 }
+
+
