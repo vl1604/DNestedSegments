@@ -16,11 +16,9 @@ public class Main
 		segments = new ArrayList<Segment>(size);
 
 		for (int i = 0; i < size; i++)
-		{
 			segments.add(new Segment(
 							 input.nextInt(),
 							 input.nextInt(), 0, i));
-		}
 
 		solveArray(segments);
 		printArray(segments);
@@ -29,39 +27,23 @@ public class Main
 	private static void solveArray(ArrayList<Segment> a)
 	{
 		int size = a.size();
-		int jl, jr, il, ir;
-		int lmin = a.get(0).getL(), rmax = a.get(0).getR();
+		int jr, ir;
 
 		sort(a);
 
 		for (int j = 0; j < size; j++)
 		{
-			jl = a.get(j).getL();
 			jr = a.get(j).getR();
 
 			for (int i = j + 1; i < size; i++)
 			{
-				il = a.get(i).getL();
 				ir = a.get(i).getR();
-
-				if (j == 0)
-				{
-					if (il < lmin)
-						lmin = il;
-					if (ir > rmax)
-						rmax = ir;
-				}
-
-				if (jl < il)
-				{
-					if (jr > ir)
+				
+				if (jr > ir && jr > a.get(i).getL())
 						a.get(j).setNum(a.get(j).getNum() + 1);
-				}
-				else
-				if (ir > jr)
-					a.get(i).setNum(a.get(i).getNum() + 1);
 			}
 		}
+		unsort(a);
 	}
 
 	private static void sort(ArrayList<Segment> a)
@@ -91,8 +73,6 @@ public class Main
 	private static void printArray(ArrayList<Segment> a)
 	{
 		StringBuilder s = new StringBuilder();
-
-		unsort(a);
 
 		for (int j = 0; j < a.size(); j++)
 			s.append(a.get(j).getNum()).append('\n');
