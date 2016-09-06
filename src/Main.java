@@ -38,9 +38,9 @@ public class Main
 			for (int i = j + 1; i < size; i++)
 			{
 				ir = a.get(i).getR();
-				
+
 				if (jr > ir && jr > a.get(i).getL())
-						a.get(j).setNum(a.get(j).getNum() + 1);
+					a.get(j).setNum(a.get(j).getNum() + 1);
 			}
 		}
 		unsort(a);
