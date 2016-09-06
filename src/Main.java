@@ -47,7 +47,7 @@ public class Main
 				ir = segI.getR();
 
 				if (jr > ir && jr > segI.getL())
-					segJ.setNum(segJ.getNum() + 1);
+					segJ.incNum();
 			}
 		}
 	}
@@ -111,6 +111,11 @@ class Segment
 	public void setNum(int num)
 	{
 		this.num = num;
+	}
+
+	public void incNum()
+	{
+		this.num++;
 	}
 
 	public int getNum()
