@@ -2,7 +2,8 @@ import java.util.*;
 
 public class Main
 {
-	private static ArrayList<Segment> segments; 
+	private static ArrayList<Segment> segments;
+	private static HashMap<Integer, Integer> map;
 
 	public static void main(String[] args)
 	{
@@ -14,6 +15,7 @@ public class Main
 	{
 		int size = input.nextInt();
 		segments = new ArrayList<Segment>(size);
+		map = new HashMap<Integer, Integer>(size);
 
 		for (int i = 0; i < size; i++)
 			segments.add(new Segment(
@@ -28,22 +30,27 @@ public class Main
 	{
 		int size = a.size();
 		int jr, ir;
+		Segment segJ, segI;
 
 		sort(a);
 
 		for (int j = 0; j < size; j++)
 		{
-			jr = a.get(j).getR();
+			segJ = a.get(j);
+			jr = segJ.getR();
+			
+			map.put(segJ.getPos(), j);
 
 			for (int i = j + 1; i < size; i++)
 			{
-				ir = a.get(i).getR();
+				segI = a.get(i);
+				ir = segI.getR();
 
-				if (jr > ir && jr > a.get(i).getL())
-					a.get(j).setNum(a.get(j).getNum() + 1);
+				if (jr > ir && jr > segI.getL())
+					segJ.setNum(segJ.getNum() + 1);
 			}
 		}
-		unsort(a);
+		//unsort(a);
 	}
 
 	private static void sort(ArrayList<Segment> a)
@@ -75,7 +82,8 @@ public class Main
 		StringBuilder s = new StringBuilder();
 
 		for (int j = 0; j < a.size(); j++)
-			s.append(a.get(j).getNum()).append('\n');
+			s.append(a.get(map.get(j)).getNum())
+				.append('\n');
 
 		System.out.print(s);
 	}
