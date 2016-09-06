@@ -38,7 +38,7 @@ public class Main
 		{
 			segJ = a.get(j);
 			jr = segJ.getR();
-			
+
 			map.put(segJ.getPos(), j);
 
 			for (int i = j + 1; i < size; i++)
@@ -50,7 +50,6 @@ public class Main
 					segJ.setNum(segJ.getNum() + 1);
 			}
 		}
-		//unsort(a);
 	}
 
 	private static void sort(ArrayList<Segment> a)
@@ -61,18 +60,6 @@ public class Main
 								   Segment obj2)
 				{
 					return  obj1.getL() - obj2.getL();
-				}
-			});
-	}
-
-	private static void unsort(ArrayList<Segment> a)
-	{
-		Collections.sort(a, 
-			new Comparator<Segment>(){
-				public int compare(Segment obj1, 
-								   Segment obj2)
-				{
-					return  obj1.getPos() - obj2.getPos();
 				}
 			});
 	}
